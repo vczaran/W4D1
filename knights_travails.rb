@@ -42,4 +42,7 @@ class KnightPathFinder
         return newpos
     end 
 
+    def find_path(end_pos)
+        root_node.dfs(end_pos)
+    end
 end

@@ -51,22 +51,22 @@
 
 #     end 
 
-#     def bfs(target_value)
-#         queue = []
-#         queue << self
+    def bfs(target_value)
+        queue = []
+        queue << self
 
-#         until queue.empty?
-#             current_child = queue.shift
+        until queue.empty?
+            current_child = queue.shift
 
-#             if current_child.pos == target_value
-#                 return current_child
-#             else
-#                 queue += current_child.children
-#             end 
-#         end 
-#         return nil
+            if current_child.pos == target_value
+                return current_child
+            else
+                queue += current_child.children
+            end 
+        end 
+        return nil
 
-#     end 
+    end 
 
 # end
 
@@ -89,36 +89,36 @@ module Searchable
       nil
     end
   
-    def bfs(target = nil, &prc)
-      raise "Need a proc or target" if [target, prc].none?
-      prc ||= Proc.new { |node| node.value == target }
+    # def bfs(target = nil, &prc)
+    #   raise "Need a proc or target" if [target, prc].none?
+    #   prc ||= Proc.new { |node| node.value == target }
   
-      nodes = [self]
-      until nodes.empty?
-        node = nodes.shift
+    #   nodes = [self]
+    #   until nodes.empty?
+    #     node = nodes.shift
   
-        return node if prc.call(node)
-        nodes.concat(node.children)
-      end
+    #     return node if prc.call(node)
+    #     nodes.concat(node.children)
+    #   end
   
-      nil
-    end
+    #   nil
+    # end
   
     #alternate solution to bfs
-    def bfs(target)
-      queue = [self]
+  #   def bfs(target)
+  #     queue = [self]
   
-      queue.each do |child|
-        return child if child.value == target
+  #     queue.each do |child|
+  #       return child if child.value == target
   
-        queue.concat(child.children)
-      end
-      nil
-    end
+  #       queue.concat(child.children)
+  #     end
+  #     nil
+  #   end
   
-    def count
-      1 + children.map(&:count).inject(:+)
-    end
+  #   def count
+  #     1 + children.map(&:count).inject(:+)
+  #   end
   end
   
   class PolyTreeNode
