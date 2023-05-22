@@ -1,11 +1,11 @@
 class PolyTreeNode
   
-    attr_accessor :parent, :children, :value
+    attr_accessor :parent, :children, :pos
   
-    def initialize(value)
+    def initialize(pos)
         @parent = []
         @children = []
-        @value = value
+        @pos = pos
     end 
 
     def parent= (node)
@@ -40,7 +40,7 @@ class PolyTreeNode
     end
 
     def dfs(target_value)
-        return self if self.value == target_value
+        return self if self.pos == target_value
         self.children.each do |child|
            result = child.dfs(target_value)
            if result != nil
@@ -58,7 +58,7 @@ class PolyTreeNode
         until queue.empty?
             current_child = queue.shift
 
-            if current_child.value == target_value
+            if current_child.pos == target_value
                 return current_child
             else
                 queue += current_child.children
