@@ -2,11 +2,11 @@ require_relative "tree_node"
 
 class KnightPathFinder
 
-    attr_accessor :start_pos, :considered_positions
+    attr_accessor :start_pos, :considered_positions, :root_node
 
     def initialize(start_pos)
         @start_pos = start_pos
-        @parent = self.build_move_tree
+        @parent = []
         @considered_positions = [start_pos]
     end
 
@@ -14,8 +14,16 @@ class KnightPathFinder
         @root_node = PolyTreeNode.new(start_pos)
     end
 
-    def build_move_tree(pos)
-        @root_node.children << valid_moves
+    def build_move_tree(self.root_node)
+        (0...8).each do |row_i|
+            (0...8).each do |col_i|
+                if self.valid_moves([row_i,col_i]) && !root_node.children.include?(pos)
+                root_node.children << [row_i, col_i]
+                root_node = [row_i, col_i]
+                end
+            end
+        end
+        
     end
 
     def self.valid_moves(pos)
@@ -32,7 +40,6 @@ class KnightPathFinder
             else 
                 return false 
             end 
-        end 
     end
 
     def new_move_positions(pos)
