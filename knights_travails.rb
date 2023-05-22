@@ -46,5 +46,3 @@ class KnightPathFinder
         root_node.dfs(end_pos)
     end
 end
-
-
